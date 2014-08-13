@@ -1,27 +1,66 @@
-# The surface of mars is a rectangular grid.
-# You must record the sequence of robot moves
-# Report the final position of the robot
+class Robot
+  attr_accessor :moves
+  @@count = 0
+  @@instances = []
+  @@compass = ["N","E","S","W"]
 
+  def initialize(options={})
+    @@count           += 1
+    @@instances       << self
+    @moves            = []
+  end
 
-Position
-- Grid co-ordinate (e.g. x,y)
-- Orientation (N,S,E,W)
+  def self.all
+    @@instances.inspect
+  end
 
-Robot move methods
-- Left (changes the orientation, 90 degrees left)
-- Right (changes the orientation, 90 degrees right)
-- Forward (changes the co-ordinate value)
+  def self.count
+    @@count
+  end
 
+  def current_position
+    @moves.last.coordinates
+  end
 
-North corresponds to the direction from grid point (x, y) to grid point (x, y+1).
+  def current_direction
+    @moves.last.orientation
+  end
 
-CREATE THE WORLD
-The first line of input is the upper-right coordinates of the rectangular world, the lower-left coordinates are assumed to be 0, 0.
+  def move instruction
+    case instruction
+    when "r" then left
+    when "l" then right
+    when "f" then forward
+    else
+      raise "error"
+    end
+  end
 
-world.new(x,y)
+  def left
+    new_direction = @@compass[@@compass.index(current_direction)+1]
+    @moves << Move.new({orientation: new_direction, x: current_position[0], y: current_position[1]})
+    @moves.last
+  end
 
-The maximum value for any coordinate is 50.
-All instruction strings will be less than 100 characters in length.
+  def right
+    new_direction = @@compass[@@compass.index(current_direction)-1]
+    @moves << Move.new({orientation: new_direction, x: current_position[0], y: current_position[1]})
+    @moves.last
+  end
 
-The Output
-For each robot position/instruction in the input, the output should indicate the final grid position and orientation of the robot. If a robot falls off the edge of the grid the word “LOST” should be printed after the position and orientation.
+  def forward
+    case current_direction
+    when "N" # [+1][=]
+      @moves << Move.new({orientation: current_direction, x: current_position[0] + 1, y: current_position[1]})
+    when "S" # [-1][=]
+      @moves << Move.new({orientation: current_direction, x: current_position[0] - 1, y: current_position[1]})
+    when "E" # [=][+1]
+      @moves << Move.new({orientation: current_direction, x: current_position[0], y: current_position[1] + 1})
+    when "W" # [=][-1]
+      @moves << Move.new({orientation: current_direction, x: current_position[0], y: current_position[1] -1})
+    else
+      raise "error"
+    end  
+  end
+
+end
