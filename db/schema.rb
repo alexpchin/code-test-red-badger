@@ -28,12 +28,12 @@ ActiveRecord::Schema.define(version: 20140814142820) do
 
   create_table "robots", force: true do |t|
     t.integer  "status"
-    t.integer  "planet_id"
+    t.integer  "world_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "robots", ["planet_id"], name: "index_robots_on_planet_id", using: :btree
+  add_index "robots", ["world_id"], name: "index_robots_on_world_id", using: :btree
 
   create_table "worlds", force: true do |t|
     t.string   "name"
