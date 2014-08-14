@@ -6,13 +6,13 @@ class World
     @x      = options[:x]
     @y      = options[:y]
     @robots = {}
-    @available_moves = generate_available_moves
+    @available_moves = generate_available_moves # (Array)
     @smells = []
   end
 
-  # Check if move is available
-  # Check if move smells
-
+  def number_of_available_moves
+    (@x * @y * 4) - (@x * 2 + @y * 2)
+  end
 
   # This method generates a multi-dimensional array
   # That represents all of the moves in the world area
@@ -24,13 +24,14 @@ class World
 
   # Check if move is available on the current world
   def is_move_available?(x,y)
-    available_moves.map do |row| 
-      row.include?([x,y])
+    available_moves.each do |row| 
+      return true if row.include?([x,y])
     end
+    return false
   end
 
   # Does move already smell?
-  def does_move_smell?(x,y)
+  def does_move_already_smell?(x,y)
     @smells.include?([x,y])
   end
 
@@ -42,16 +43,6 @@ class World
   # Quick hack to display visible grid
   def display_grid
     available_moves.map { |row| row.inspect }
-  end
-
-  def calculate_move(input)
-    case input
-    when "L" then left
-    when "R" then right
-    when "F" then forward
-    else
-      # Raise error
-    end
   end
 
 end
