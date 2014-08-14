@@ -26,10 +26,10 @@ group :development, :test do
 end
 
 group :test do
-  gem 'capybara'
+  gem 'rspec-rails', '~> 2.14.2'
   gem 'database_cleaner'
-  gem 'mocha'
   gem 'shoulda'
   gem 'shoulda-matchers', require: false
-  gem 'rspec-rails', '~> 2.14.2'
+  gem 'capybara'
+  gem 'mocha'
 end

@@ -21,4 +21,16 @@ Move belongs_to :robot
 
 - clean-up routes.rb file
 - install jquery using bower
-- rake db:create db:migrate
+- bundle exec rake db:drop db:create db:migrate bundle exec rake db:test:prepare
+- rails g rspec:install
+- mkdir spec/controllers 
+- touch spec/controllers/worlds_controller_spec.rb
+- touch spec/controllers/robots_controller_spec.rb
+- touch spec/controllers/moves_controller_spec.rb
+- require spec_helper in files
+- describe controllers
+- run bundle exec rspec 
+- mkdir spec/models
+- touch spec/models/world_spec.rb 
+- touch spec/models/robot_spec.rb 
+- touch spec/models/move_spec.rb 
