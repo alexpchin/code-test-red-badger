@@ -1,0 +1,25 @@
+%h1 Listing moves
+
+%table
+  %tr
+    %th Orientation
+    %th Xcoordinate
+    %th Xcoordinate
+    %th Robot
+    %th
+    %th
+    %th
+
+  - @moves.each do |move|
+    %tr
+      %td= move.orientation
+      %td= move.xcoordinate
+      %td= move.xcoordinate
+      %td= move.robot
+      %td= link_to 'Show', move
+      %td= link_to 'Edit', edit_move_path(move)
+      %td= link_to 'Destroy', move, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Move', new_move_path

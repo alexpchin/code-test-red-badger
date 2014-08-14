@@ -1,0 +1,22 @@
+= form_for @move do |f|
+  - if @move.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@move.errors.count, "error")} prohibited this move from being saved:"
+      %ul
+        - @move.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :orientation
+    = f.text_field :orientation
+  .field
+    = f.label :xcoordinate
+    = f.number_field :xcoordinate
+  .field
+    = f.label :xcoordinate
+    = f.number_field :xcoordinate
+  .field
+    = f.label :robot
+    = f.text_field :robot
+  .actions
+    = f.submit 'Save'

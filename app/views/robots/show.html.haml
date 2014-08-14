@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Status:
+  = @robot.status
+%p
+  %b Planet:
+  = @robot.planet
+
+= link_to 'Edit', edit_robot_path(@robot)
+\|
+= link_to 'Back', robots_path

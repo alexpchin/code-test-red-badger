@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @world.name
+%p
+  %b X:
+  = @world.x
+%p
+  %b Y:
+  = @world.y
+
+= link_to 'Edit', edit_world_path(@world)
+\|
+= link_to 'Back', worlds_path

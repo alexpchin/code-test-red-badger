@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Orientation:
+  = @move.orientation
+%p
+  %b Xcoordinate:
+  = @move.xcoordinate
+%p
+  %b Xcoordinate:
+  = @move.xcoordinate
+%p
+  %b Robot:
+  = @move.robot
+
+= link_to 'Edit', edit_move_path(@move)
+\|
+= link_to 'Back', moves_path
