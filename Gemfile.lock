@@ -159,7 +159,7 @@ GEM
       shoulda-context (~> 1.0, >= 1.0.1)
       shoulda-matchers (>= 1.4.1, < 3.0)
     shoulda-context (1.2.1)
-    shoulda-matchers (2.6.1)
+    shoulda-matchers (2.5.0)
       activesupport (>= 3.0.0)
     slim (2.0.3)
       temple (~> 0.6.6)
@@ -203,6 +203,7 @@ DEPENDENCIES
   database_cleaner
   haml-rails
   jbuilder (~> 2.0)
+  minitest
   mocha
   pg
   pry
@@ -214,7 +215,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   shoulda
-  shoulda-matchers
+  shoulda-matchers (~> 2.5.0)
   spring
   sprockets_better_errors
   uglifier (>= 1.3.0)

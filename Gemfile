@@ -17,19 +17,20 @@ group :production do
   gem 'sprockets_better_errors'
 end
 
-group :development, :test do
+group :test, :development do
   gem 'brakeman', :require => false
   gem 'pry'
   gem 'pry-byebug'
   gem 'pry-rails'
-  gem 'spring'
+  gem 'rspec-rails', '~> 2.14.2'
 end
 
 group :test do
-  gem 'rspec-rails', '~> 2.14.2'
+  gem 'minitest'
+  gem 'spring'
   gem 'database_cleaner'
   gem 'shoulda'
-  gem 'shoulda-matchers', require: false
+  gem 'shoulda-matchers', '~> 2.5.0', require: false
   gem 'capybara'
   gem 'mocha'
 end
