@@ -1,5 +1,7 @@
 %p#notice= notice
 
+= link_to 'Deploy robot', new_robot_path
+
 %p
   %b Name:
   = @world.name
@@ -9,6 +11,8 @@
 %p
   %b Y:
   = @world.y
+
+= @world.display_grid
 
 = link_to 'Edit', edit_world_path(@world)
 \|

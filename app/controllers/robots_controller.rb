@@ -24,11 +24,12 @@ class RobotsController < ApplicationController
   # POST /robots
   # POST /robots.json
   def create
-    @robot = Robot.new(robot_params)
+    world = world.find(params[:id])
+    @robot = world.robots.new(robot_params)
 
     respond_to do |format|
       if @robot.save
-        format.html { redirect_to @robot, notice: 'Robot was successfully created.' }
+        format.html { redirect_to world, notice: 'Robot was successfully created.' }
         format.json { render :show, status: :created, location: @robot }
       else
         format.html { render :new }

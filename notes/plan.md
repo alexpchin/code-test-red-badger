@@ -38,3 +38,13 @@ Move belongs_to :robot
 - touch spec/models/move_spec.rb
 
 ##Add some validation
+
+
+##Add rails admin
+- gem 'rails_admin'
+- rails g rails_admin:install
+- TO FINISH
+
+
+
+

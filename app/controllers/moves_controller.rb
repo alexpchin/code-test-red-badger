@@ -24,16 +24,21 @@ class MovesController < ApplicationController
   # POST /moves
   # POST /moves.json
   def create
-    @move = Move.new(move_params)
+    if can_play?
+      @move = Move.new(move_params)
 
-    respond_to do |format|
-      if @move.save
-        format.html { redirect_to @move, notice: 'Move was successfully created.' }
-        format.json { render :show, status: :created, location: @move }
-      else
-        format.html { render :new }
-        format.json { render json: @move.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @move.save
+          format.html { redirect_to @move, notice: 'Move was successfully created.' }
+          format.json { render :show, status: :created, location: @move }
+        else
+          format.html { render :new }
+          format.json { render json: @move.errors, status: :unprocessable_entity }
+        end
       end
+    else 
+      format.html { render :new, notice: 'That move smells.' }
+      format.json { render json: @move.errors, status: :unprocessable_entity }
     end
   end
 
