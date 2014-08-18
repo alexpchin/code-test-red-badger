@@ -1,38 +1,31 @@
 class RobotsController < ApplicationController
   before_action :set_robot, only: [:show, :edit, :update, :destroy]
 
-  # GET /robots
-  # GET /robots.json
-  def index
-    @robots = Robot.all
-  end
-
-  # GET /robots/1
-  # GET /robots/1.json
-  def show
-  end
-
   # GET /robots/new
   def new
-    @robot = Robot.new
-  end
-
-  # GET /robots/1/edit
-  def edit
+    @world = World.find params[:world_id]
+    @robot = @world.robots.new
   end
 
   # POST /robots
   # POST /robots.json
   def create
-    world = world.find(params[:id])
-    @robot = world.robots.new(robot_params)
+    @world = World.find params[:world_id]
+    @robot = @world.robots.new(params[:id])
 
-    respond_to do |format|
-      if @robot.save
-        format.html { redirect_to world, notice: 'Robot was successfully created.' }
-        format.json { render :show, status: :created, location: @robot }
-      else
-        format.html { render :new }
+    unless @world.deployed_robot?
+      respond_to do |format|
+        if @robot.save
+          format.html { redirect_to @world, notice: 'Robot was successfully created.' }
+          format.json { render :show, status: :created, location: @robot }
+        else
+          format.html { render :new }
+          format.json { render json: @robot.errors, status: :unprocessable_entity }
+        end
+      end
+    else 
+      respond_to do |format|
+        format.html { redirect_to @world, notice: 'You already have a robot deployed!' }
         format.json { render json: @robot.errors, status: :unprocessable_entity }
       end
     end
@@ -69,7 +62,7 @@ class RobotsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def robot_params
-      params.require(:robot).permit(:status, :planet_id)
+    def robot_id_params
+      params.require(:robot).permit(:status, :world_id)
     end
 end

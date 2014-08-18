@@ -10,6 +10,8 @@ class WorldsController < ApplicationController
   # GET /worlds/1
   # GET /worlds/1.json
   def show
+    @robot  = @world.robots.where(status: 1).first
+    @robots = @world.robots.all
   end
 
   # GET /worlds/new

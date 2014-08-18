@@ -9,6 +9,10 @@ class World < ActiveRecord::Base
   validates :x, numericality: {less_than_or_equal_to: 50, greater_than: 0}, presence: true
   validates :y, numericality: {less_than_or_equal_to: 50, greater_than: 0}, presence: true
 
+  def deployed_robot?
+    robots.detect { |robot| robot.status == 1 }
+  end
+
   def number_of_available_moves
     (x * y * 4) - (x * 2 + y * 2)
   end

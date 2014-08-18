@@ -38,13 +38,28 @@ Move belongs_to :robot
 - touch spec/models/move_spec.rb
 
 ##Add some validation
-
+- Adding validation to all the models
 
 ##Add rails admin
 - gem 'rails_admin'
 - rails g rails_admin:install
 - TO FINISH
 
+##Nested resources
+- Move robots to world/:id/robots
+- Move moves to world/:id/robots/:id/moves
+- Update tests
 
+##Brakeman
+- $ brakeman
+- Possible unprotected redirect near line 32: redirect_to((local world).find(+params[:id]+), :notice => "Robot was successfully created.")
 
+##Views
+- Create new _world partial
 
+##Streamline scaffold
+- Remove moves/edit
+- Remove moves/show
+
+##DB
+- Make default for status to be 1 (Deployed)

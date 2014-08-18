@@ -1,5 +1,7 @@
 %h1 Listing worlds
 
+= link_to "Discover new world", new_world_path
+
 %table
   %tr
     %th Name
@@ -9,15 +11,4 @@
     %th
     %th
 
-  - @worlds.each do |world|
-    %tr
-      %td= world.name
-      %td= world.x
-      %td= world.y
-      %td= link_to 'Show', world
-      %td= link_to 'Edit', edit_world_path(world)
-      %td= link_to 'Destroy', world, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New World', new_world_path
+  = render @worlds

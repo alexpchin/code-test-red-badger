@@ -18,10 +18,11 @@ ActiveRecord::Schema.define(version: 20140814142820) do
 
   create_table "moves", force: true do |t|
     t.string   "orientation"
-    t.integer  "xcoordinate"
+    t.integer  "x"
+    t.integer  "y"
     t.integer  "robot_id"
     t.integer  "world_id"
-    t.string   "status"
+    t.integer  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -30,7 +31,7 @@ ActiveRecord::Schema.define(version: 20140814142820) do
   add_index "moves", ["world_id"], name: "index_moves_on_world_id", using: :btree
 
   create_table "robots", force: true do |t|
-    t.integer  "status"
+    t.integer  "status",     default: 1
     t.integer  "world_id"
     t.datetime "created_at"
     t.datetime "updated_at"

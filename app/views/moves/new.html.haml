@@ -1,5 +1,5 @@
-%h1 New move
+%h1 Create new move for #{@robot.id}
 
 = render 'form'
 
-= link_to 'Back', moves_path
+= link_to 'Back', world_path(@world)

@@ -1,0 +1,8 @@
+%tr
+  %td= move.orientation
+  %td= move.xcoordinate
+  %td= move.xcoordinate
+  %td= move.robot
+  %td= link_to 'Show', move
+  %td= link_to 'Edit', edit_world_move_path(move)
+  %td= link_to 'Destroy', move, :method => :delete, :data => { :confirm => 'Are you sure?' }

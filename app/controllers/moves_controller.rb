@@ -7,29 +7,25 @@ class MovesController < ApplicationController
     @moves = Move.all
   end
 
-  # GET /moves/1
-  # GET /moves/1.json
-  def show
-  end
-
   # GET /moves/new
   def new
-    @move = Move.new
-  end
-
-  # GET /moves/1/edit
-  def edit
+    @world = World.find params[:world_id]
+    @robot = @world.robots.where(status: 1).first
+    @move = @robot.moves.new
   end
 
   # POST /moves
   # POST /moves.json
   def create
-    if can_play?
-      @move = Move.new(move_params)
+    @world = World.find params[:world_id]
+    @robot = @world.robots.where(status: 1).first
+
+    if @world.is_move_available?
+      @move = @robot.moves.new(move_params)
 
       respond_to do |format|
         if @move.save
-          format.html { redirect_to @move, notice: 'Move was successfully created.' }
+          format.html { redirect_to @world, notice: 'Move was successfully created.' }
           format.json { render :show, status: :created, location: @move }
         else
           format.html { render :new }
@@ -74,6 +70,6 @@ class MovesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def move_params
-      params.require(:move).permit(:orientation, :xcoordinate, :xcoordinate, :robot_id)
+      params.require(:move).permit(:orientation, :x, :x, :robot_id)
     end
 end

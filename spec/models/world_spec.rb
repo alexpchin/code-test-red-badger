@@ -3,6 +3,10 @@ require "shoulda/matchers"
 
 describe World do
   
+  # it "has a valid factory" do
+  #   expect(build(:world)).to be_valid
+  # end
+
   describe "relations" do
     it { should have_many (:robots) }
     it { should have_many (:moves) }

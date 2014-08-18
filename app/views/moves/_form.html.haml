@@ -1,4 +1,4 @@
-= form_for @move do |f|
+= form_for [@world, @robot, @move] do |f|
   - if @move.errors.any?
     #error_explanation
       %h2= "#{pluralize(@move.errors.count, "error")} prohibited this move from being saved:"
@@ -10,13 +10,10 @@
     = f.label :orientation
     = f.text_field :orientation
   .field
-    = f.label :xcoordinate
-    = f.number_field :xcoordinate
+    = f.label :x
+    = f.number_field :x
   .field
-    = f.label :xcoordinate
-    = f.number_field :xcoordinate
-  .field
-    = f.label :robot
-    = f.text_field :robot
+    = f.label :y
+    = f.number_field :y
   .actions
     = f.submit 'Save'
