@@ -14,14 +14,19 @@ class World < ActiveRecord::Base
     robots.any? { |robot| robot.status == 1 }
   end
 
-  # Limit the range of the world definition
+  # Limit the range of the world co-ordinates
   def range
     [*0..50]
   end
 
   # Returns the moves made by robots on world
   def moves_on_world
-    @moves = robots.map(&:moves).flatten!
+    robots.map(&:moves).flatten!
+  end
+
+  # Returns the count of the number of moves made on world
+  def count_total_moves_on_world
+    moves_on_world.count
   end
 
   # Calculate the number of moves available on the planet.

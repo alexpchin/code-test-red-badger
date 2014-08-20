@@ -15,5 +15,6 @@
   .field
     = f.label :y
     = f.select :y, @move.range.map { |r| [r, r] }
+
   .actions
     = f.submit 'Save'

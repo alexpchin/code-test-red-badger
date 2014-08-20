@@ -1,5 +1,10 @@
-%h1 Create new move for Robot: #{@robot.id} on #{@world.name}
+- if @robot.count_moves.zero?
+  %h1 Land Robot: #{@robot.id} on #{@world.name}
+  = render 'form'
 
-= render 'form'
+- else
+  %h1 Create new move for Robot: #{@robot.id} on #{@world.name}
+  %p There have been #{@world.count_total_moves_on_world} moves on this world.
+  %p Robot: #{@robot.id} has made #{@robot.count_moves} moves on this world.
 
 = link_to 'Back', world_path(@world)
