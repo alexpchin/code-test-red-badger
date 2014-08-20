@@ -12,6 +12,7 @@ class WorldsController < ApplicationController
   def show
     @robot  = @world.robots.where(status: 1).first
     @robots = @world.robots
+    @moves  = @world.moves_on_world
   end
 
   # GET /worlds/new

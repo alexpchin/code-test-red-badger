@@ -3,6 +3,8 @@ Plan
 
 TO DO
 Edit, Delete Cancan
+Better way to dynamically limit 50 value
+Nested attribute for form
 
 
 

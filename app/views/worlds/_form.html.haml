@@ -11,9 +11,9 @@
     = f.text_field :name
   .field
     = f.label :x
-    = f.number_field :x
+    = f.select :x, @world.range.map { |r| [r, r] }
   .field
     = f.label :y
-    = f.number_field :y
+    = f.select :y, @world.range.map { |r| [r, r] }
   .actions
     = f.submit 'Save'

@@ -14,9 +14,19 @@ class World < ActiveRecord::Base
     robots.any? { |robot| robot.status == 1 }
   end
 
+  # Limit the range of the world definition
+  def range
+    [*0..50]
+  end
+
+  # Returns the moves made by robots on world
+  def moves_on_world
+    @moves = robots.map(&:moves).flatten!
+  end
+
   # Calculate the number of moves available on the planet.
   # Well actually, the number of squares rather than moves.
-  def number_of_available_moves
+  def number_of_available_squares
     (x * y * 4) - (x * 2 + y * 2)
   end
 

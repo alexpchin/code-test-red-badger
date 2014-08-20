@@ -13,7 +13,9 @@
 / = @world.display_grid
 
 %h3 Robots
-= link_to 'Deploy robot', new_world_robot_path(@world)
+- unless @world.deployed_robot?
+  = link_to 'Deploy another robot', new_world_robot_path(@world)
+
 - if @robots.present?
   = render @robots
 - else 
@@ -24,5 +26,8 @@
 - if @world.deployed_robot?
   = link_to "New Move", new_world_robot_move_path(@world, @robot)
 
-- if @moves.present?
+
+- unless @moves.nil?
   = render @moves
+- else 
+  %p No moves have been made.

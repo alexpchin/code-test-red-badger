@@ -21,14 +21,12 @@ ActiveRecord::Schema.define(version: 20140814142820) do
     t.integer  "x"
     t.integer  "y"
     t.integer  "robot_id"
-    t.integer  "world_id"
     t.integer  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "moves", ["robot_id"], name: "index_moves_on_robot_id", using: :btree
-  add_index "moves", ["world_id"], name: "index_moves_on_world_id", using: :btree
 
   create_table "robots", force: true do |t|
     t.integer  "status",     default: 1

@@ -8,12 +8,12 @@
 
   .field
     = f.label :orientation
-    = f.text_field :orientation
+    = f.select :orientation, @move.orientations.map { |o| [o, o] }
   .field
     = f.label :x
-    = f.number_field :x
+    = f.select :x, @move.range.map { |r| [r, r] }
   .field
     = f.label :y
-    = f.number_field :y
+    = f.select :y, @move.range.map { |r| [r, r] }
   .actions
     = f.submit 'Save'

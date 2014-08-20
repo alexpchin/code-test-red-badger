@@ -5,7 +5,6 @@ class CreateMoves < ActiveRecord::Migration
       t.integer :x
       t.integer :y
       t.references :robot, index: true
-      t.references :world, index: true
       t.integer :status
 
       t.timestamps
