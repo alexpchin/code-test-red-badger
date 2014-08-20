@@ -1,6 +1,11 @@
 Plan 
 ====
 
+TO DO
+Edit, Delete Cancan
+
+
+
 - Get a quick solution working in command line to work out some logic.
 - Remove turbolinks, remove jquery-rails
 - Delete scaffold.css
@@ -56,6 +61,10 @@ Move belongs_to :robot
 
 ##Views
 - Create new _world partial
+- Make basic navigation to help development
+
+##CSS
+- Delete scaffold CSS
 
 ##Streamline scaffold
 - Remove moves/edit

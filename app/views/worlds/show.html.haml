@@ -10,13 +10,19 @@
   %b Y:
   = @world.y
 
-= @world.display_grid
+/ = @world.display_grid
 
+%h3 Robots
 = link_to 'Deploy robot', new_world_robot_path(@world)
-%h3 Deployed robots
-= @robots.inspect
+- if @robots.present?
+  = render @robots
+- else 
+  %p No robots have been deployed.
 
-= link_to "New Move", new_world_robot_move_path(@world, @robot)
 
-%h3 Previous moves
-= @moves
+%h3 Moves
+- if @world.deployed_robot?
+  = link_to "New Move", new_world_robot_move_path(@world, @robot)
+
+- if @moves.present?
+  = render @moves

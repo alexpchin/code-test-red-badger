@@ -1,0 +1,17 @@
+!!!
+%html
+  %head
+    %title RedBadger
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    %header
+      %nav
+        %ul
+          %li= link_to "Home", root_path
+          %li= link_to "Worlds", worlds_path
+          %li= link_to "Discover a new world", new_world_path
+    %main
+      = yield
+    %footer

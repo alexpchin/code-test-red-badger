@@ -11,7 +11,7 @@ class WorldsController < ApplicationController
   # GET /worlds/1.json
   def show
     @robot  = @world.robots.where(status: 1).first
-    @robots = @world.robots.all
+    @robots = @world.robots
   end
 
   # GET /worlds/new

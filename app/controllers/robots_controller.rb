@@ -10,10 +10,12 @@ class RobotsController < ApplicationController
   # POST /robots
   # POST /robots.json
   def create
-    @world = World.find params[:world_id]
-    @robot = @world.robots.new(params[:id])
+    @world = World.find(params[:world_id])
 
+    # Only create if there isn't a deployed robot
     unless @world.deployed_robot?
+      @robot = @world.robots.new()
+
       respond_to do |format|
         if @robot.save
           format.html { redirect_to @world, notice: 'Robot was successfully created.' }
@@ -33,27 +35,27 @@ class RobotsController < ApplicationController
 
   # PATCH/PUT /robots/1
   # PATCH/PUT /robots/1.json
-  def update
-    respond_to do |format|
-      if @robot.update(robot_params)
-        format.html { redirect_to @robot, notice: 'Robot was successfully updated.' }
-        format.json { render :show, status: :ok, location: @robot }
-      else
-        format.html { render :edit }
-        format.json { render json: @robot.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #     if @robot.update(robot_params)
+  #       format.html { redirect_to @robot, notice: 'Robot was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @robot }
+  #     else
+  #       format.html { render :edit }
+  #       format.json { render json: @robot.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /robots/1
   # DELETE /robots/1.json
-  def destroy
-    @robot.destroy
-    respond_to do |format|
-      format.html { redirect_to robots_url, notice: 'Robot was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  # def destroy
+  #   @robot.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to robots_url, notice: 'Robot was successfully destroyed.' }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

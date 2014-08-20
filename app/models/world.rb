@@ -9,10 +9,13 @@ class World < ActiveRecord::Base
   validates :x, numericality: {less_than_or_equal_to: 50, greater_than: 0}, presence: true
   validates :y, numericality: {less_than_or_equal_to: 50, greater_than: 0}, presence: true
 
+  # Method to check whether there already is a robot deployed on the planet.
   def deployed_robot?
-    robots.detect { |robot| robot.status == 1 }
+    robots.any? { |robot| robot.status == 1 }
   end
 
+  # Calculate the number of moves available on the planet.
+  # Well actually, the number of squares rather than moves.
   def number_of_available_moves
     (x * y * 4) - (x * 2 + y * 2)
   end
