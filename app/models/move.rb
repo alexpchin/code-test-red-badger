@@ -7,24 +7,30 @@ class Move < ActiveRecord::Base
   validate :correct_orientation?
   validates :orientation, presence: true
   validates :status, numericality: {less_than_or_equal_to: 1, greater_than_or_equal_to: 0}, presence: true
-  validates :x, numericality: {less_than_or_equal_to: 50, greater_than: 0}, presence: true
-  validates :y, numericality: {less_than_or_equal_to: 50, greater_than: 0}, presence: true
+  validates :x, numericality: {less_than_or_equal_to: 50, greater_than_or_equal_to: 0}, presence: true
+  validates :y, numericality: {less_than_or_equal_to: 50, greater_than_or_equal_to: 0}, presence: true
 
   # Validation orientation
   def correct_orientation?
-    if !orientations.include?(orientation)
+    if !["n","s","e","w"].include?(orientation)
       errors.add(:orientation, "Please choose N, S, E or W.")
     end
   end
 
   # Define possible orientations
-  def orientations
+  def self.orientations
     %w(n s e w)
   end
 
   # TODO: Make upper limit dynamic
-  def range
+  def self.range
     [*0..50]
+  end
+
+  # Define possible robot move choices
+  # Available after landing on world
+  def self.options
+    %w(l r f)
   end
 
   private

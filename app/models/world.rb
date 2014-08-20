@@ -10,27 +10,28 @@ class World < ActiveRecord::Base
   validates :y, numericality: {less_than_or_equal_to: 50, greater_than: 0}, presence: true
 
   # Method to check whether there already is a robot deployed on the planet.
+  # Returns true if there is, false if there isn't.
   def deployed_robot?
     robots.any? { |robot| robot.status == 1 }
   end
 
-  # Limit the range of the world co-ordinates
-  def range
-    [*0..50]
-  end
-
-  # Returns the moves made by robots on world
+  # Returns the moves made by robots on world.
   def moves_on_world
     robots.map(&:moves).flatten!
   end
 
-  # Returns the count of the number of moves made on world
+  # Returns the count of the number of moves made on world.
   def count_total_moves_on_world
     moves_on_world.count
   end
 
-  # Calculate the number of moves available on the planet.
-  # Well actually, the number of squares rather than moves.
+
+
+
+
+
+
+  # Calculate the number of squares available on the planet.
   def number_of_available_squares
     (x * y * 4) - (x * 2 + y * 2)
   end
@@ -44,7 +45,7 @@ class World < ActiveRecord::Base
   end
 
   # Check if move is available on the current world
-  def is_move_available?
+  def is_move_available?(x,y)
     available_moves.each do |row| 
       return true if row.include?([x,y])
     end

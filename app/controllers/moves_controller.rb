@@ -20,7 +20,18 @@ class MovesController < ApplicationController
     @world = World.find params[:world_id]
     @robot = @world.robots.find params[:robot_id]
 
-    if @world.is_move_available?
+    if params[:robot_instruction].present?
+      move_params = case params[:robot_instruction]
+      when "l" then @robot.left
+      when "r" then @robot.right
+      when "f" then @robot.forward
+      else raise "error"
+      end
+    end
+
+puts "#{move_params} *******************************************"
+
+    if @world.is_move_available?(move_params[:x],move_params[:y])
       @move = @robot.moves.new(move_params)
 
       respond_to do |format|

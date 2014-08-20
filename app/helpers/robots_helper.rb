@@ -1,8 +1,8 @@
 module RobotsHelper
 
+  # Show the status of the robot as a string
   def display_status(robot)
-    return "DEPLOYED" if robot.status == 1
-    return "LOST" if robot.status == 0
+    robot.status == 1 ? "DEPLOYED" : "LOST"
   end
 
 end

@@ -6,15 +6,21 @@
         - @move.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :orientation
-    = f.select :orientation, @move.orientations.map { |o| [o, o] }
-  .field
-    = f.label :x
-    = f.select :x, @move.range.map { |r| [r, r] }
-  .field
-    = f.label :y
-    = f.select :y, @move.range.map { |r| [r, r] }
+  - if @robot.count_moves.zero?
+    .field
+      = f.label :orientation
+      = f.select :orientation, Move.orientations.map { |o| [o, o] }
+    .field
+      = f.label :x
+      = f.select :x, Move.range.map { |r| [r, r] }
+    .field
+      = f.label :y
+      = f.select :y, Move.range.map { |r| [r, r] }
+
+  - else
+    .field
+      = label_tag :robot_instruction
+      = select_tag :robot_instruction, options_for_select(Move.options.map { |option| [option, option] })
 
   .actions
     = f.submit 'Save'
