@@ -4,25 +4,32 @@ class Robot < ActiveRecord::Base
 
   validates :status, numericality: {less_than_or_equal_to: 1, greater_than_or_equal_to: 0}, presence: true
 
+  # Pass last move into method to prevent query
+  # Only new moves will have a new status of 0
+  def check_if_lost_after_move(move)
+    self.status = 0 if move.status == 0
+    self.save
+  end
+
   # Count the number of moves this robot has made
   # Can only be on one planet at a time
   def count_moves
-    moves.count
+    moves.count if moves
   end
 
   # Retrieve the robot's last orientation
   def current_orientation
-    moves.last.orientation
+    moves.last.orientation if moves.count > 0
   end
 
-  # Retrieve the robot's last x co-ordinate
+  # Retrieve the robot's last x coordinate
   def x
-    moves.last.x
+    moves.last.x if moves.count > 0
   end
 
-  # Retrieve the robot's last y co-ordinate
+  # Retrieve the robot's last y coordinate
   def y
-    moves.last.y
+    moves.last.y if moves.count > 0
   end
 
   # Turn the robot left
@@ -56,6 +63,16 @@ class Robot < ActiveRecord::Base
       raise "error"
     end
     {orientation: current_orientation, x: new_x, y: new_y}
+  end
+
+  # Choose the instruction to send to the robot
+  def select_move(instruction)
+    case instruction
+    when "l" then self.left
+    when "r" then self.right
+    when "f" then self.forward
+    else raise "error"
+    end
   end
 
 end

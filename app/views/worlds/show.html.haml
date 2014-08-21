@@ -28,6 +28,7 @@
 
 
 - unless @moves.nil?
-  = render @moves
+  %ul
+    = render @moves
 - else 
   %p No moves have been made.

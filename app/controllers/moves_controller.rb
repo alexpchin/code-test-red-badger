@@ -20,32 +20,21 @@ class MovesController < ApplicationController
     @world = World.find params[:world_id]
     @robot = @world.robots.find params[:robot_id]
 
-    if params[:robot_instruction].present?
-      move_params = case params[:robot_instruction]
-      when "l" then @robot.left
-      when "r" then @robot.right
-      when "f" then @robot.forward
-      else raise "error"
-      end
+    if params.has_key?(:robot_instruction)
+      @move = @robot.moves.new(@robot.select_move(params[:robot_instruction]))
+    else
+      @move = @robot.moves.new(move_params)
     end
 
-puts "#{move_params} *******************************************"
-
-    if @world.is_move_available?(move_params[:x],move_params[:y])
-      @move = @robot.moves.new(move_params)
-
-      respond_to do |format|
-        if @move.save
-          format.html { redirect_to @world, notice: 'Move was successfully created.' }
-          format.json { render :show, status: :created, location: @move }
-        else
-          format.html { render :new }
-          format.json { render json: @move.errors, status: :unprocessable_entity }
-        end
+    respond_to do |format|
+      if @move.save
+        @robot.check_if_lost_after_move(@move)
+        format.html { redirect_to @world, notice: 'Move was successfully created.' }
+        format.json { render :show, status: :created, location: @move }
+      else
+        format.html { render :new, notice: 'That move smells.'  }
+        format.json { render json: @move.errors, status: :unprocessable_entity }
       end
-    else 
-      format.html { render :new, notice: 'That move smells.' }
-      format.json { render json: @move.errors, status: :unprocessable_entity }
     end
   end
 

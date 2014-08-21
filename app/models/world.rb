@@ -25,17 +25,6 @@ class World < ActiveRecord::Base
     moves_on_world.count
   end
 
-
-
-
-
-
-
-  # Calculate the number of squares available on the planet.
-  def number_of_available_squares
-    (x * y * 4) - (x * 2 + y * 2)
-  end
-
   # This method generates a multi-dimensional array
   # That represents all of the moves in the world area
   # he lower-left coords are assumed to be 0, 0.
@@ -52,14 +41,9 @@ class World < ActiveRecord::Base
     return false
   end
 
-  # Does move already smell?
-  def does_move_already_smell?(x,y)
-    smells.include?([x,y])
-  end
-
-  # Make smell to warn robots
-  def let_one_rip(x,y)
-    smells << [x,y]
+  # Calculate the number of squares available on the planet.
+  def number_of_available_squares
+    (x * y * 4) - (x * 2 + y * 2)
   end
 
   # Quick hack to display visible grid
