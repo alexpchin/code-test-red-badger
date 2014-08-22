@@ -11,30 +11,21 @@ class RobotsController < ApplicationController
   # POST /robots.json
   def create
     @world = World.find(params[:world_id])
+    @robot = @world.robots.new()
 
-    # Only create if there isn't a deployed robot
-    unless @world.deployed_robot?
-      @robot = @world.robots.new()
-
-      respond_to do |format|
-        if @robot.save
-          format.html { redirect_to @world, notice: 'Robot was successfully created.' }
-          format.json { render :show, status: :created, location: @robot }
-        else
-          format.html { render :new }
-          format.json { render json: @robot.errors, status: :unprocessable_entity }
-        end
-      end
-    else 
-      respond_to do |format|
-        format.html { redirect_to @world, notice: 'You already have a robot deployed!' }
+    respond_to do |format|
+      if @robot.save
+        format.html { redirect_to @world, notice: 'Robot was successfully created.' }
+        format.json { render :show, status: :created, location: @robot }
+      else
+        format.html { render :new }
         format.json { render json: @robot.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /robots/1
-  # PATCH/PUT /robots/1.json
+  # # PATCH/PUT /robots/1
+  # # PATCH/PUT /robots/1.json
   # def update
   #   respond_to do |format|
   #     if @robot.update(robot_params)
@@ -44,16 +35,6 @@ class RobotsController < ApplicationController
   #       format.html { render :edit }
   #       format.json { render json: @robot.errors, status: :unprocessable_entity }
   #     end
-  #   end
-  # end
-
-  # DELETE /robots/1
-  # DELETE /robots/1.json
-  # def destroy
-  #   @robot.destroy
-  #   respond_to do |format|
-  #     format.html { redirect_to robots_url, notice: 'Robot was successfully destroyed.' }
-  #     format.json { head :no_content }
   #   end
   # end
 

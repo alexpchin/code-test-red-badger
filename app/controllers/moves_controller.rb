@@ -29,6 +29,8 @@ class MovesController < ApplicationController
     respond_to do |format|
       if @move.save
         @robot.check_if_lost_after_move(@move)
+puts "#{@robot} ****************************************************************"
+
         format.html { redirect_to @world, notice: 'Move was successfully created.' }
         format.json { render :show, status: :created, location: @move }
       else

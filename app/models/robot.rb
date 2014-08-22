@@ -2,13 +2,23 @@ class Robot < ActiveRecord::Base
   belongs_to  :world
   has_many    :moves
 
+  validate :prevent_multirobotics?, on: :create
   validates :status, numericality: {less_than_or_equal_to: 1, greater_than_or_equal_to: 0}, presence: true
+
+  # Validates creating only one robot at a time on a world
+  def prevent_multirobotics?
+    if World.find(self.world_id).deployed_robot?
+      errors.add(:robot, "You already have a deployed robot.")
+    end
+  end
 
   # Pass last move into method to prevent query
   # Only new moves will have a new status of 0
   def check_if_lost_after_move(move)
-    self.status = 0 if move.status == 0
-    self.save
+    if move.status == 0
+      self.status = 0
+      self.save!
+    end
   end
 
   # Count the number of moves this robot has made

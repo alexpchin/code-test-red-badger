@@ -3,6 +3,7 @@ class Move < ActiveRecord::Base
   belongs_to :world
 
   before_validation :set_status
+  before_validation :already_smells?
   before_save :process_move
 
   validate :correct_orientation?
@@ -19,9 +20,15 @@ class Move < ActiveRecord::Base
     end
   end
 
+  # Validation for whether there already has been a robot lost with this move
+  def already_smells?
+    if Move.where(x: self.x, y: self.y, status: 0).present?
+      errors.add(:move, "There is already a smell here...")
+    end
+  end
+
   # Process the move
   def process_move
-    return false if already_smells?
     self.status = self.is_move_available? ? 1 : 0
   end
 
@@ -29,10 +36,6 @@ class Move < ActiveRecord::Base
   def is_move_available?
     world = World.find(Robot.find(self.robot_id).world_id)
     world.is_move_available?(self.x, self.y)
-  end
-
-  def already_smells?
-    Move.where(x: self.x, y: self.y, status: 0).present?
   end
 
   # Define possible orientations
