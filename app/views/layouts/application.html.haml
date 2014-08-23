@@ -2,16 +2,26 @@
 %html
   %head
     %title RedBadger
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
     = csrf_meta_tags
   %body
     %header
       %nav
-        %ul
-          %li= link_to "Home", root_path
-          %li= link_to "Worlds", worlds_path
-          %li= link_to "Discover a new world", new_world_path
+        %ul.clearfix
+          %li.left
+            = image_tag("redbadger_logo.png")
+          %li.left
+            = link_to "Alex Chin", root_path
+          
+          %li.right
+            = link_to "New", new_world_path
+          %li.right
+            = link_to "Worlds", worlds_path
     %main
       = yield
     %footer
+      %nav
+        %ul.clearfix
+          %li.left
+            = link_to "Alex Chin", "http://www.alexchin.co.uk"

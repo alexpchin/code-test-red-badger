@@ -1,7 +1,1 @@
-%tr
-  %td= world.name
-  %td= world.x
-  %td= world.y
-  %td= link_to 'Show', world
-  %td= link_to 'Edit', edit_world_path(world)
-  %td= link_to 'Destroy', world, :method => :delete, :data => { :confirm => 'Are you sure?' }
+%li= link_to world.name.capitalize, world

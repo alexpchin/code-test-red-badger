@@ -23,4 +23,4 @@
       = select_tag :robot_instruction, options_for_select(Move.options.map { |option| [option, option] })
 
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', class: "button expand"

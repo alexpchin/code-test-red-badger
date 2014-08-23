@@ -1,0 +1,56 @@
+body {
+  background: #f0b406;
+}
+
+ul {
+  margin: 0;
+}
+
+header, main, footer {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+a {
+  color: #FFF;
+}
+
+a:hover {
+  color: #FFF;
+  text-decoration: underline;
+}
+
+header {
+  line-height: 60px;
+  border-bottom: 2px solid #000;
+
+  nav ul li {
+    line-height: 60px;
+    display: inline;
+    padding: 0 5px;
+
+    &:first-child {
+      padding: 0;
+    }
+  
+    a {
+      color: #000;
+    }
+  }
+}
+
+main {
+
+}
+
+input, select {
+  display: block;
+  max-width: 300px;
+  width: 300px;
+}
+
+footer {
+  margin-top: 60px;
+  line-height: 60px;
+  border-top: 2px solid #000;
+}

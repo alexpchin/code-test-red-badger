@@ -1,21 +1,13 @@
-%p#notice= notice
-
-%p
-  %b Name:
-  = @world.name
-%p
-  %b X:
-  = @world.x
-%p
-  %b Y:
-  = @world.y
+%h1= @world.name.capitalize
+%p 
+  = "X: #{@world.x}, Y: #{@world.y}"
 
 %h3 Robots
 - unless @world.deployed_robot?
-  = link_to 'Deploy another robot', new_world_robot_path(@world)
+  = link_to 'Deploy another robot', new_world_robot_path(@world), class: "button expand"
 
 - if @robots.present?
-  %ul
+  %ul.no-bullet
     = render @robots
 - else 
   %p No robots have been deployed.
@@ -23,10 +15,10 @@
 
 %h3 Moves
 - if @world.deployed_robot?
-  = link_to "New Move", new_world_robot_move_path(@world, @robot)
+  = link_to "New Move", new_world_robot_move_path(@world, @robot), class: "button expand"
 
 - if @moves.present?
-  %ul
+  %ul.no-bullet
     = render @moves
 - else 
   %p No moves have been made.

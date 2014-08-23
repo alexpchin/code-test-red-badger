@@ -7,7 +7,7 @@
           %li= msg
 
   .field
-    = f.label :name
+    = f.label "Please choose a name for your world."
     = f.text_field :name
   .field
     = f.label :x
@@ -16,4 +16,4 @@
     = f.label :y
     = f.select :y, Move.range.map { |r| [r, r] }
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', class: "button expand"
