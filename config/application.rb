@@ -36,9 +36,9 @@ module RedBadger
     # Explicitly register the extensions we are interested in compiling
     config.assets.precompile.push(Proc.new do |path|
       File.extname(path).in? [
-        '.html', '.erb', '.haml',                 # Templates
-        '.png',  '.gif', '.jpg', '.jpeg', '.svg', # Images
-        '.eot',  '.otf', '.svc', '.woff', '.ttf', # Fonts
+        '.html', '.erb', '.haml',                         # Templates
+        '.png',  '.gif', '.jpg', '.jpeg', '.svg', '.ico', # Images
+        '.eot',  '.otf', '.svc', '.woff', '.ttf',         # Fonts
       ]
     end)
  
