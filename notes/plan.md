@@ -71,3 +71,6 @@ Move belongs_to :robot
 
 ##DB
 - Make default for status to be 1 (Deployed)
+
+##Heroku
+- Add favicon
