@@ -24,8 +24,8 @@ module RedBadger
     config.assets.paths << Rails.root.join('app', 'assets', 'components')
 
     # Setup autoload
-    # config.autoload_paths += %W(#{config.root}/lib)
-    # config.eager_load_paths += %W(#{config.root}/lib)
+    config.autoload_paths += %W(#{config.root}/lib)
+    config.eager_load_paths += %W(#{config.root}/lib)
 
     # Heroku
     # config.serve_static_assets = true # Rails 12 factor does this by default
