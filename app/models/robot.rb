@@ -43,14 +43,22 @@ class Robot < ActiveRecord::Base
   end
 
   # Turn the robot left
+  # As orientations is an array, must cater for last in the array.
   def left
     new_orientation = Move.orientations[Move.orientations.index(current_orientation)-1]
+    if new_orientation.nil?
+      new_orientation = Move.orientations[-1]
+    end
     {orientation: new_orientation, x: x, y: y}
   end
 
   # Turn the robot right
+  # As orientations is an array, must cater for last in the array.
   def right
     new_orientation = Move.orientations[Move.orientations.index(current_orientation)+1]
+    if new_orientation.nil?
+      new_orientation = Move.orientations[0]
+    end
     {orientation: new_orientation, x: x, y: y}
   end
 

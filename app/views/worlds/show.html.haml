@@ -2,9 +2,9 @@
 %p 
   = "X: #{@world.x}, Y: #{@world.y}"
 
-%h3 Robots
+%h3= "#{robots(@world)}"
 - unless @world.deployed_robot?
-  = link_to 'Deploy another robot', new_world_robot_path(@world), class: "button expand"
+  = link_to 'Deploy a robot', new_world_robot_path(@world), class: "button expand"
 
 - if @robots.present?
   %ul.no-bullet
@@ -13,7 +13,7 @@
   %p No robots have been deployed.
 
 
-%h3 Moves
+%h3= "#{moves(@world)}"
 - if @world.deployed_robot?
   = link_to "New Move", new_world_robot_move_path(@world, @robot), class: "button expand"
 

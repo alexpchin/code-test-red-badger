@@ -33,6 +33,3 @@ $ ->
       e.preventDefault()
       url = $(@).attr('href')
       ajaxLoad(url)
-
-    
-

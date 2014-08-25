@@ -40,30 +40,6 @@ class WorldsController < ApplicationController
     end
   end
 
-  # # PATCH/PUT /worlds/1
-  # # PATCH/PUT /worlds/1.json
-  # def update
-  #   respond_to do |format|
-  #     if @world.update(world_params)
-  #       format.html { redirect_to @world, notice: 'World was successfully updated.' }
-  #       format.json { render :show, status: :ok, location: @world }
-  #     else
-  #       format.html { render :edit }
-  #       format.json { render json: @world.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
-
-  # # DELETE /worlds/1
-  # # DELETE /worlds/1.json
-  # def destroy
-  #   @world.destroy
-  #   respond_to do |format|
-  #     format.html { redirect_to worlds_url, notice: 'World was successfully destroyed.' }
-  #     format.json { head :no_content }
-  #   end
-  # end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_world

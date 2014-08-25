@@ -39,7 +39,7 @@ class Move < ActiveRecord::Base
 
   # Define possible orientations
   def self.orientations
-    %w(n s e w)
+    %w(n e s w)
   end
 
   # Define maximum and miminum coordinate values

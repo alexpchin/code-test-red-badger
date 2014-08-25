@@ -21,7 +21,12 @@ class World < ActiveRecord::Base
 
   # Returns the count of the number of moves made on world.
   def count_total_moves_on_world
-    moves_on_world.count
+    moves_on_world.count if moves_on_world
+  end
+
+  # Returns the count of the number of robots deployed on world.
+  def count_robots_on_world
+    robots.count if robots
   end
 
   # This method generates a multi-dimensional array

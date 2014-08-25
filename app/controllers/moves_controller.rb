@@ -1,25 +1,15 @@
 class MovesController < ApplicationController
-  before_action :set_move, only: [:show, :edit, :update, :destroy]
-
-  # GET /moves
-  # GET /moves.json
-  def index
-    @moves = Move.all
-  end
+  before_action :set_world, only: [:new, :create]
+  before_action :set_robot, only: [:new, :create]
 
   # GET /moves/new
-  def new
-    @world = World.find params[:world_id]
-    @robot = Robot.find params[:robot_id]
+  def new 
     @move = @robot.moves.new
   end
 
   # POST /moves
   # POST /moves.json
   def create
-    @world = World.find params[:world_id]
-    @robot = @world.robots.find params[:robot_id]
-
     if params.has_key?(:robot_instruction)
       @move = @robot.moves.new(@robot.select_move(params[:robot_instruction]))
     else
@@ -40,8 +30,12 @@ class MovesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_move
-      @move = Move.find(params[:id])
+    def set_world
+      @world = World.find params[:world_id]
+    end
+
+    def set_robot
+      @robot = Robot.find params[:robot_id]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
