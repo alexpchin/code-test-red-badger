@@ -1,7 +1,7 @@
 = form_for [@world, @robot, @move] do |f|
   - if @move.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@move.errors.count, "error")} prohibited this move from being saved:"
+      %h2= "#{pluralize(@move.errors.count, "error")} prohibited this move from being received and understood by the robot:"
       %ul
         - @move.errors.full_messages.each do |msg|
           %li= msg
