@@ -74,3 +74,4 @@ Move belongs_to :robot
 
 ##Heroku
 - Add favicon
+- Fix secret_key_base issue by uncommenting config/secrets.yml from gitignore.

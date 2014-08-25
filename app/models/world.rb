@@ -1,6 +1,5 @@
 class World < ActiveRecord::Base
   has_many :robots
-  has_many :moves
 
   validates :name, uniqueness: true, format: { with: /\A[a-zA-Z0-9]+\Z/ }, allow_blank: false
   validates :name, presence: true

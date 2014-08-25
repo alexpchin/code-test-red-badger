@@ -20,9 +20,8 @@ a:hover {
   text-decoration: underline;
 }
 
-header {
+header, footer {
   line-height: 60px;
-  border-bottom: 2px solid #000;
 
   nav ul li {
     line-height: 60px;
@@ -39,6 +38,16 @@ header {
   }
 }
 
+header {
+  border-bottom: 2px solid #000;
+  margin-bottom: 20px;
+}
+
+footer {
+  margin-top: 20px;
+  border-top: 2px solid #000;
+}
+
 main {
 
 }
@@ -49,8 +58,4 @@ input, select {
   width: 300px;
 }
 
-footer {
-  margin-top: 60px;
-  line-height: 60px;
-  border-top: 2px solid #000;
-}
+

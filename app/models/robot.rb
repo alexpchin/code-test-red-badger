@@ -2,13 +2,13 @@ class Robot < ActiveRecord::Base
   belongs_to  :world
   has_many    :moves
 
-  validate :prevent_multirobotics?, on: :create
   validates :status, numericality: {less_than_or_equal_to: 1, greater_than_or_equal_to: 0}, presence: true
+  validate :prevent_multirobotics?, on: :create
 
   # Validates creating only one robot at a time on a world
   def prevent_multirobotics?
     if World.find(self.world_id).deployed_robot?
-      errors.add(:robot, "You already have a deployed robot.")
+      errors.add(:base, :deployed_robot)
     end
   end
 

@@ -9,7 +9,6 @@ describe World do
 
   describe "relations" do
     it { should have_many (:robots) }
-    it { should have_many (:moves) }
   end
 
   describe "validations" do

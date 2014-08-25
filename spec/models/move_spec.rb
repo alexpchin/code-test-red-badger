@@ -4,7 +4,6 @@ describe Move do
 
   describe "relations" do
     it { should belong_to (:robot) }
-    it { should belong_to (:world) }
   end
 
   describe "validations" do

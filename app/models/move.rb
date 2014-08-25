@@ -1,6 +1,5 @@
 class Move < ActiveRecord::Base
   belongs_to :robot
-  belongs_to :world
 
   before_validation :set_status
   before_validation :already_smells?
@@ -9,21 +8,21 @@ class Move < ActiveRecord::Base
   validate :correct_orientation?
   validates :orientation, presence: true
   validates :status, numericality: {less_than_or_equal_to: 1, greater_than_or_equal_to: 0}, presence: true
-  # Range needs to be greater by 1 than the world coordinate range.
+  # Range needs to be greater by 1 than the world max coordinate range.
   validates :x, numericality: {less_than_or_equal_to: 51, greater_than_or_equal_to: -1}, presence: true
   validates :y, numericality: {less_than_or_equal_to: 51, greater_than_or_equal_to: -1}, presence: true
 
   # Validation orientation
   def correct_orientation?
     if !["n","s","e","w"].include?(orientation)
-      errors.add(:orientation, "Please choose N, S, E or W.")
+      errors.add(:orientation, :orientation_error)
     end
   end
 
   # Validation for whether there already has been a robot lost with this move
   def already_smells?
     if Move.where(x: self.x, y: self.y, status: 0).present?
-      errors.add(:move, "There is already a smell here...")
+      errors.add(:base, :already_smells)
     end
   end
 
