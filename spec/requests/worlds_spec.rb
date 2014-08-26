@@ -1,11 +1,10 @@
-require 'spec_helper'
+# require 'spec_helper'
 
-describe "Worlds" do
-  describe "GET /worlds" do
-    it "works! (now write some real specs)" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      get worlds_path
-      response.status.should be(200)
-    end
-  end
-end
+# describe "Worlds" do
+#   describe "GET /worlds" do
+#     it "Get /worlds" do
+#       get worlds_path
+#       response.status.should be(200)
+#     end
+#   end
+# end

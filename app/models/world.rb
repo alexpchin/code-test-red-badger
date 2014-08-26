@@ -4,8 +4,8 @@ class World < ActiveRecord::Base
   validates :name, uniqueness: true, format: { with: /\A[a-zA-Z0-9]+\Z/ }, allow_blank: false
   validates :name, presence: true
   validates :name, length: { minimum: 1, maximum: 30 }
-  validates :x, numericality: {less_than_or_equal_to: 50, greater_than: 0}, presence: true
-  validates :y, numericality: {less_than_or_equal_to: 50, greater_than: 0}, presence: true
+  validates :x, numericality: {less_than_or_equal_to: 50, greater_than_or_equal_to: 0}, presence: true
+  validates :y, numericality: {less_than_or_equal_to: 50, greater_than_or_equal_to: 0}, presence: true
 
   # Method to check whether there already is a robot deployed on the planet.
   # Returns true if there is, false if there isn't.

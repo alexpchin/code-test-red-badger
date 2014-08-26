@@ -2,6 +2,10 @@ require "spec_helper"
 
 describe Robot do
 
+  # it "has a valid factory" do
+  #   expect(build(:robot)).to be_valid
+  # end
+
   describe "relations" do
     it { should have_many (:moves) }
     it { should belong_to (:world) }
@@ -10,6 +14,7 @@ describe Robot do
   describe "validations" do
     it { should validate_numericality_of(:status).is_less_than_or_equal_to(1).is_greater_than_or_equal_to(0) }
     it { should validate_presence_of(:status) }
+    it { should validate_presence_of(:world_id) }
   end
 
 end

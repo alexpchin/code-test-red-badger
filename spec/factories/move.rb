@@ -1,13 +1,13 @@
 FactoryGirl.define do
-  factory :move do
+  factory :move do |f|
     ## attributes
-    orientation { ["n","s","e","w"].sample } 
-    x { rand(0..50) }
-    y { rand(0..50) }
-    robot_id { rand(0..50) }
-    status { rand(0..1) }
+    f.orientation { ["n","s","e","w"].sample } 
+    f.x { rand(0..50) }
+    f.y { rand(0..50) }
+    f.robot_id { rand(1..50) }
+    f.status { rand(0..1) }
 
     ## associations
-    robot
+    f.robot
   end
 end

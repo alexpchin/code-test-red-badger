@@ -3,6 +3,7 @@ class Robot < ActiveRecord::Base
   has_many    :moves
 
   validates :status, numericality: {less_than_or_equal_to: 1, greater_than_or_equal_to: 0}, presence: true
+  validates :world_id, presence: true
   validate :prevent_multirobotics?, on: :create
 
   # Validates creating only one deployed robot at a time on a world

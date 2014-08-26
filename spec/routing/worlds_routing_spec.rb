@@ -15,20 +15,8 @@ describe WorldsController do
       get("/worlds/1").should route_to("worlds#show", :id => "1")
     end
 
-    it "routes to #edit" do
-      get("/worlds/1/edit").should route_to("worlds#edit", :id => "1")
-    end
-
     it "routes to #create" do
       post("/worlds").should route_to("worlds#create")
-    end
-
-    it "routes to #update" do
-      put("/worlds/1").should route_to("worlds#update", :id => "1")
-    end
-
-    it "routes to #destroy" do
-      delete("/worlds/1").should route_to("worlds#destroy", :id => "1")
     end
 
   end

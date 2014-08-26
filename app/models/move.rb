@@ -12,6 +12,14 @@ class Move < ActiveRecord::Base
   validates :x, numericality: {less_than_or_equal_to: 51, greater_than_or_equal_to: -1}, presence: true
   validates :y, numericality: {less_than_or_equal_to: 51, greater_than_or_equal_to: -1}, presence: true
 
+  after_save :is_robot_lost?
+
+  # Check if robot is lost after move
+  def is_robot_lost?
+    robot = Robot.find(self.robot_id)
+    robot.check_if_lost_after_move(self)
+  end
+
   # Validation orientation
   def correct_orientation?
     if !["n","s","e","w"].include?(orientation)

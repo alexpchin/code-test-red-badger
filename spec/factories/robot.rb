@@ -1,10 +1,10 @@
 FactoryGirl.define do
-  factory :robot do
+  factory :robot do |f|
     ## attributes
-    status { rand(0..1) } 
-    world_id { rand(0..10) }
+    f.status { rand(0..1) } 
+    f.world_id { rand(1..10) }
 
     ## associations
-    world
+    f.world
   end
 end

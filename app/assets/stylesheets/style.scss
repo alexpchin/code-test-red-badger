@@ -43,6 +43,36 @@ header {
   margin-bottom: 20px;
 }
 
+main #error_explanation {
+  margin: 0 0 20px;
+  background: #000;
+  color: #f0b406;
+  -webkit-border-radius: 5px; 
+  -moz-border-radius: 5px; 
+  border-radius: 5px; 
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 13px; 
+
+  h2 {
+    color: #f0b406;
+    font-weight: bold;
+  }
+
+  * {
+   -webkit-animation-duration:1s;
+   -moz-animation-duration:1s;
+   -ms-animation-duration:1s;
+   -o-animation-duration:1s;
+   animation-duration:1s;
+   -webkit-animation-delay:1s;
+   -moz-animation-delay:1s;
+   -ms-animation-delay:1s;
+   -o-animation-delay:1s;
+   animation-delay:1s; 
+  }
+}
+
 footer {
   margin-top: 20px;
   border-top: 2px solid #000;
@@ -53,3 +83,4 @@ input, select {
   max-width: 300px;
   width: 300px;
 }
+

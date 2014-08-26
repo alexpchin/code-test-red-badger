@@ -37,4 +37,6 @@ group :test do
   gem 'shoulda-matchers', '~> 2.5.0', require: false
   gem 'capybara'
   gem 'mocha'
+  gem 'factory_girl_rails'
+  gem 'faker'
 end
