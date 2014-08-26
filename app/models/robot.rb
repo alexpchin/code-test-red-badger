@@ -5,9 +5,10 @@ class Robot < ActiveRecord::Base
   validates :status, numericality: {less_than_or_equal_to: 1, greater_than_or_equal_to: 0}, presence: true
   validate :prevent_multirobotics?, on: :create
 
-  # Validates creating only one robot at a time on a world
+  # Validates creating only one deployed robot at a time on a world
   def prevent_multirobotics?
-    if World.find(self.world_id).deployed_robot?
+    robots = Robot.where world_id: self.world_id 
+    if robots.any? { |robot| robot.status == 1 }
       errors.add(:base, :deployed_robot)
     end
   end

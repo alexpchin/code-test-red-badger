@@ -20,10 +20,6 @@ class WorldsController < ApplicationController
     @world = World.new
   end
 
-  # GET /worlds/1/edit
-  def edit
-  end
-
   # POST /worlds
   # POST /worlds.json
   def create

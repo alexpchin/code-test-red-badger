@@ -9,7 +9,8 @@ ajaxLoad = (url) ->
     $('footer').css("display", "none")
     $('main').load "#{url} main > *", ->
       $('main').addClass("fadeInUp animated")
-      $('footer').delay(800).fadeIn("slow")
+      $('main').one 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', ->
+        $('footer').fadeIn("slow")
 
 initialize = -> 
   history.replaceState

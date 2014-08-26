@@ -9,6 +9,7 @@ class World < ActiveRecord::Base
 
   # Method to check whether there already is a robot deployed on the planet.
   # Returns true if there is, false if there isn't.
+  # Currently deprecated for Robot.prevent_multirobotics?
   def deployed_robot?
     robots.any? { |robot| robot.status == 1 }
   end
