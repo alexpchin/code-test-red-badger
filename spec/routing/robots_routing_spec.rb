@@ -11,9 +11,5 @@ describe RobotsController do
       post("/worlds/1/robots").should route_to("robots#create", :world_id => "1")
     end
 
-    it "routes to #update" do
-      put("/worlds/1/robots/1").should route_to("robots#update", :id => "1", :world_id => "1")
-    end
-
   end
 end

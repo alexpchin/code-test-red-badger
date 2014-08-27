@@ -1,11 +1,27 @@
-# require 'spec_helper'
+require 'spec_helper'
 
-# describe "Robots" do
-#   describe "GET /world/1/robots" do
-#     it "works! (now write some real specs)" do
-#       # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-#       get world_robots_path
-#       response.status.should be(200)
-#     end
-#   end
-# end
+describe "Robots" do
+  before(:each) do
+    World.destroy_all
+    Robot.destroy_all
+    @world   = FactoryGirl.create(:world)
+    @robot_params   = FactoryGirl.attributes_for(:robot)
+  end
+
+  # New
+  describe "GET /worlds/:id/robots/new" do
+    it "Get /worlds/:id/robots/new" do
+      get new_world_robot_path(@world)
+      response.status.should be(200)
+    end
+  end
+
+  # Create
+  describe "POST /worlds/:id/robots" do
+    it "POST /worlds/:id/robots" do
+      post world_robots_path(@world, robot: @robot_params)
+      response.status.should be(302)
+    end
+  end
+
+end

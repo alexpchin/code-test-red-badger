@@ -1,5 +1,5 @@
 class WorldsController < ApplicationController
-  before_action :set_world, only: [:show, :edit, :update, :destroy]
+  before_action :set_world, only: [:show]
 
   # GET /worlds
   # GET /worlds.json
