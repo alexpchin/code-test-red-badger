@@ -37,10 +37,17 @@ describe RobotsController do
     end
 
     describe "with invalid params" do
+      # it "assigns a newly created but unsaved robot as @robot" do
+      #   Robot.any_instance.stub(:save).and_return(false)
+      #   post :create, {:robot => { "status" => nil }, world_id: @world.id}
+      #   # post :create, robot: FactoryGirl.attributes_for(:invalid_robot), world_id: @world.id
+      #   assigns(:robot).should be_a_new(Robot)
+      # end
+
       it "assigns a newly created but unsaved robot as @robot" do
-        Robot.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Robot).to receive(:save).and_return(false)
         post :create, {:robot => { "status" => nil }, world_id: @world.id}
-        assigns(:robot).should be_a_new(Robot)
+        expect(assigns(:robot)).to be_a_new(Robot)
       end
 
       it "re-renders the 'new' template" do

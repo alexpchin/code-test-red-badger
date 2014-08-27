@@ -1,6 +1,9 @@
 require "spec_helper"
 
 describe WorldsController do
+  before(:each) do
+    World.destroy_all
+  end
 
   describe "GET index" do
     before(:each) do
@@ -28,6 +31,14 @@ describe WorldsController do
     end
   end
 
+  describe "GET show" do
+    it "assigns the requested world as @world" do
+      world = FactoryGirl.create(:world)
+      get :show, {:id => world.to_param}
+      assigns(:world).should eq(world)
+    end
+  end
+
   describe "POST create" do
     describe "with valid params" do
       it "creates a new World" do
@@ -51,8 +62,14 @@ describe WorldsController do
     describe "with invalid params" do
       it "assigns a newly created but unsaved world as @world" do
         World.any_instance.stub(:save).and_return(false)
-        post :create, {:world => { "name" => nil }}
+        post :create, world: FactoryGirl.attributes_for(:invalid_world)
         assigns(:world).should be_a_new(World)
+      end
+
+      it "does not save the new world" do
+        expect{
+          post :create, world: FactoryGirl.attributes_for(:invalid_world)
+        }.to_not change(World, :count)
       end
 
       it "re-renders the 'new' template" do
@@ -62,7 +79,5 @@ describe WorldsController do
       end
     end
   end
-
-  # Show
 
 end
