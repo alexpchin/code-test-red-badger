@@ -1,5 +1,12 @@
 RailsAdmin.config do |config|
 
+  ## Custom basic auth
+  config.authorize_with do
+    authenticate_or_request_with_http_basic('Code test for RedBadger') do |username, password|
+      username == ENV['REDBADGER_U'] && password == ENV['REDBADGER_P']
+    end
+  end
+
   ### Popular gems integration
 
   ## == Devise ==
