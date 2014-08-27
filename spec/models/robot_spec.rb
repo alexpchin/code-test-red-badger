@@ -2,10 +2,6 @@ require "spec_helper"
 
 describe Robot do
 
-  # it "has a valid factory" do
-  #   expect(build(:robot)).to be_valid
-  # end
-
   describe "relations" do
     it { should have_many (:moves) }
     it { should belong_to (:world) }
