@@ -2,6 +2,9 @@ require "spec_helper"
 
 describe RobotsController do
   before(:each) do
+    # spec_helper 
+    # truncation
+
     World.destroy_all
     Robot.destroy_all
 

@@ -11,11 +11,14 @@ ajaxLoad = (url) ->
       $('main').addClass("fadeInUp animated")
       $('main').one 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', ->
         $('footer').fadeIn("slow")
+        initialize()
 
 initialize = -> 
   history.replaceState
     path: window.location.href
   , ""
+  if ($('#error_explanation').length)
+    $('#error_explanation').addClass("shake animated")
 
 $ ->
   if Modernizr.history
@@ -24,7 +27,6 @@ $ ->
         ajaxLoad(location.href)
       else
         initialURL = false
-        badgerLogo
       false
 
     $(window).on "popstate", popState

@@ -1,11 +1,14 @@
 class World < ActiveRecord::Base
+  MAXSIZE = 50
+  MINSIZE = 0
+  
   has_many :robots
 
   validates :name, uniqueness: true, format: { with: /\A[a-zA-Z0-9]+\Z/ }, allow_blank: false
   validates :name, presence: true
   validates :name, length: { minimum: 1, maximum: 30 }
-  validates :x, numericality: {less_than_or_equal_to: 50, greater_than_or_equal_to: 0}, presence: true
-  validates :y, numericality: {less_than_or_equal_to: 50, greater_than_or_equal_to: 0}, presence: true
+  validates :x, numericality: {less_than_or_equal_to: World::MAXSIZE, greater_than_or_equal_to: World::MINSIZE}, presence: true
+  validates :y, numericality: {less_than_or_equal_to: World::MAXSIZE, greater_than_or_equal_to: World::MINSIZE}, presence: true
 
   # Method to check whether there already is a robot deployed on the planet.
   # Returns true if there is, false if there isn't.
@@ -16,8 +19,8 @@ class World < ActiveRecord::Base
 
   # Returns the moves made by robots on world.
   def moves_on_world
-    moves = robots.map(&:moves).flatten! 
-    moves.reverse if !moves.nil?
+    moves = robots.reverse.map(&:moves).flatten! 
+    moves if !moves.nil?
   end
 
   # Returns the count of the number of moves made on world.
@@ -32,9 +35,9 @@ class World < ActiveRecord::Base
 
   # This method generates a multi-dimensional array
   # That represents all of the moves in the world area
-  # he lower-left coords are assumed to be 0, 0.
+  # The lower-left coords are assumed to be 0, 0.
   def available_moves
-    row, col = [*0..x], [*0..y]       
+    row, col = [*World::MINSIZE..x], [*World::MINSIZE..y]       
     row.map { |r| ([r]*(y+1)).zip(col) }
   end
 

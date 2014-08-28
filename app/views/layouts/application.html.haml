@@ -23,6 +23,8 @@
           %li.right
             = link_to "Worlds", worlds_path
     %main
+      - flash.each do |name, msg|
+        = content_tag :div, msg, :id => "alert"
       = yield
     %footer
       %nav
