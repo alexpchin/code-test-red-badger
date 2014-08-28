@@ -8,11 +8,7 @@ class MovesController < ApplicationController
   end
 
   def create
-    if params.has_key?(:robot_instruction) 
-      move = @robot.select_move(params[:robot_instruction]
-    else 
-      move = move_params
-    end
+    move = @robot.return_move(params)
     @move = @robot.moves.new(move)
     
     if @move.save
