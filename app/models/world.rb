@@ -19,8 +19,8 @@ class World < ActiveRecord::Base
 
   # Returns the moves made by robots on world.
   def moves_on_world
-    moves = robots.reverse.map(&:moves).flatten! 
-    moves if !moves.nil?
+    moves = robots.map(&:moves).flatten! 
+    moves.reverse if !moves.nil?
   end
 
   # Returns the count of the number of moves made on world.

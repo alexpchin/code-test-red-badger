@@ -6,6 +6,13 @@ class Robot < ActiveRecord::Base
   validates :world_id, presence: true
   validate :prevent_multirobotics?, on: :create
 
+  # Retrieve the robot's last co-ordinates
+  [:x, :y].each do |indice|
+    define_method indice do 
+      moves.last.send indice if moves.present?
+    end 
+  end
+
   # Validates creating only one deployed robot at a time on a world
   def prevent_multirobotics?
     if self.world.robots.any? { |r| r.status == 1 && r.id }
@@ -26,28 +33,19 @@ class Robot < ActiveRecord::Base
   end
 
   # Retrieve the robot's last orientation
-  # Moves return in DESC order so .first is the last
+  # Moves return in ASC order because of default scope
   def current_orientation
-    moves.first.orientation if moves.present?
+    moves.last.orientation if moves.present?
   end
 
   # Retrieve the robot's last x coordinate
-  def x
-    moves.first.x if moves.present?
-  end
+  # def x
+  #   moves.first.x if moves.present?
+  # end
 
-  # Retrieve the robot's last y coordinate
-  def y
-    moves.first.y if moves.present?
-  end
-
-  ## Meta class to dry up code?
-  # class << self
-  #   [:x, :y].each do |indice|
-  #     define_method indice do 
-  #       moves.first.send indice if moves.present?
-  #     end 
-  #   end
+  # # Retrieve the robot's last y coordinate
+  # def y
+  #   moves.first.y if moves.present?
   # end
 
   # Turn the robot left

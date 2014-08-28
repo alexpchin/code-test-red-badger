@@ -1,4 +1,6 @@
 class Move < ActiveRecord::Base
+  default_scope { order('created_at ASC') }
+
   ORIENTATIONS = %w(n e s w)
   INSTRUCTIONS = %w(l r f)
 
