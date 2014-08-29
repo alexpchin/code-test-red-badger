@@ -27,7 +27,7 @@ class Move < ActiveRecord::Base
   end
 
   # Validation orientation
-  # Instead of validates_inclusion_of
+  # Instead of validates_inclusion_of :orientation, in: Move::ORIENTATIONS
   def correct_orientation?
     if !Move::ORIENTATIONS.include?(orientation)
       errors.add(:orientation, :orientation_error) 

@@ -6,19 +6,10 @@
 - unless @world.deployed_robot?
   = link_to 'Deploy a robot', new_world_robot_path(@world), class: "button expand"
 
-- if @robots.present?
-  %ul.no-bullet
-    = render @robots
-- else 
-  %p No robots have been deployed.
-
+= display_robots(@world)
 
 %h3= "#{moves(@world)}"
 - if @world.deployed_robot?
   = link_to "New Move", new_world_robot_move_path(@world, @robot), class: "button expand"
 
-- if @moves.present?
-  %ul.no-bullet
-    = render @moves
-- else 
-  %p No moves have been made.
+= display_moves(@world)
