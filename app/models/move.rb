@@ -10,13 +10,14 @@ class Move < ActiveRecord::Base
   before_validation :already_smells?
   before_save :process_move
 
-  validate :correct_orientation?
-  validates :orientation, presence: true
-  validates :status, numericality: {less_than_or_equal_to: 1, greater_than_or_equal_to: 0}, presence: true
   # Range needs to be greater by 1 than the world max coordinate range.
   # This is so that the robot is still able to fall off.
-  validates :x, numericality: {less_than_or_equal_to: Proc.new{World::MAXSIZE+1}, greater_than_or_equal_to: Proc.new{World::MINSIZE-1}}, presence: true
-  validates :y, numericality: {less_than_or_equal_to: Proc.new{World::MAXSIZE+1}, greater_than_or_equal_to: Proc.new{World::MINSIZE-1}}, presence: true
+  [:x, :y].each do |n|
+    validates n, numericality: {less_than_or_equal_to: Proc.new{World::MAXSIZE+1}, greater_than_or_equal_to: Proc.new{World::MINSIZE-1}}, presence: true
+  end
+  validates :orientation, presence: true
+  validates :status, numericality: {less_than_or_equal_to: 1, greater_than_or_equal_to: 0}, presence: true
+  validate :correct_orientation?
 
   after_save :is_robot_lost?
 
