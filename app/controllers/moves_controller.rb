@@ -8,8 +8,7 @@ class MovesController < ApplicationController
   end
 
   def create
-    move = @robot.return_move(params)
-    @move = @robot.moves.new(move)
+    @move = @robot.moves.new(@robot.return_move(params))
     
     if @move.save
       flash[:notice] = 'Move was successfully created.'

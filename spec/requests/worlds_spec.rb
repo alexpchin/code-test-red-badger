@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe "Worlds" do
   before(:each) do
-    World.destroy_all
     @world   = FactoryGirl.create(:world)
     @world_params = FactoryGirl.attributes_for(:world)
   end

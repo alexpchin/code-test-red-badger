@@ -27,6 +27,8 @@ group :test, :development do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 2.14.2'
+  gem 'rubocop'
+  gem "codeclimate-test-reporter"
 end
 
 group :test do

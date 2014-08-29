@@ -2,8 +2,6 @@ require 'spec_helper'
 
 describe "Robots" do
   before(:each) do
-    World.destroy_all
-    Robot.destroy_all
     @world   = FactoryGirl.create(:world)
     @robot_params   = FactoryGirl.attributes_for(:robot)
   end

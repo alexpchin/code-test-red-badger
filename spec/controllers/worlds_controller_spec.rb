@@ -1,9 +1,6 @@
 require "spec_helper"
 
 describe WorldsController do
-  before(:each) do
-    World.destroy_all
-  end
 
   describe "GET index" do
     before(:each) do

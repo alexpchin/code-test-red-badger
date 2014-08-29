@@ -2,10 +2,6 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe MovesController do
   before(:each) do
-    World.destroy_all
-    Robot.destroy_all
-    Move.destroy_all
-
     @world   = FactoryGirl.create(:world)
     @robot   = FactoryGirl.create(:robot)
     @move    = FactoryGirl.create(:move)

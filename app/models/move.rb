@@ -69,7 +69,7 @@ class Move < ActiveRecord::Base
   # Method to clean up my controller
   def return_move(params)
     if params.has_key?(:robot_instruction) 
-      self.select_move(params[:robot_instruction]
+      self.select_move(params[:robot_instruction])
     else 
       params.require(:move).permit(:orientation, :x, :y)
     end

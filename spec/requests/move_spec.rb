@@ -2,9 +2,6 @@ require 'spec_helper'
 
 describe "Moves" do
   before(:each) do
-    World.destroy_all
-    Robot.destroy_all
-    Move.destroy_all
     @world   = FactoryGirl.create(:world)
     @robot   = FactoryGirl.create(:robot)
     @move_params    = FactoryGirl.attributes_for(:move)

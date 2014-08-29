@@ -38,34 +38,25 @@ class Robot < ActiveRecord::Base
     moves.last.orientation if moves.present?
   end
 
-  # Retrieve the robot's last x coordinate
-  # def x
-  #   moves.first.x if moves.present?
-  # end
-
-  # # Retrieve the robot's last y coordinate
-  # def y
-  #   moves.first.y if moves.present?
-  # end
-
-  # Turn the robot left
-  # As orientations is an array, must cater for last in the array.
-  def left
-    new_orientation = Move.orientations[Move.orientations.index(current_orientation)-1]
-    if new_orientation.nil?
-      new_orientation = Move.orientations[-1]
+  # Combined left and right method to dry up code.
+  # As orientations is an array, must cater for last/first in the array.
+  def turn(direction)
+    case direction
+    when "right" then make_turn(1, 0)
+    when "left" then make_turn(-1, -1)
+    else 
+      raise StandardError, "The direction needs to be left or right."
     end
-    {orientation: new_orientation, x: x, y: y}
   end
 
   # Turn the robot right
   # As orientations is an array, must cater for last in the array.
-  def right
-    new_orientation = Move.orientations[Move.orientations.index(current_orientation)+1]
+  def make_turn(move1, move2)
+    new_orientation = Move.orientations[Move.orientations.index(current_orientation) + move1]
     if new_orientation.nil?
-      new_orientation = Move.orientations[0]
+      new_orientation = Move.orientations[move2]
     end
-    {orientation: new_orientation, x: x, y: y}
+    { orientation: new_orientation, x: x, y: y }
   end
 
   def forward
@@ -77,14 +68,14 @@ class Robot < ActiveRecord::Base
     else
       raise StandardError, "Needs to be of type n, e, s, w."
     end
-    {orientation: current_orientation, x: coordinates.first, y: coordinates.last}
+    { orientation: current_orientation, x: coordinates.first, y: coordinates.last }
   end
 
   # Choose the instruction to send to the robot
   def select_move(instruction)
     case instruction
-    when "l" then self.left
-    when "r" then self.right
+    when "l" then self.turn("left")
+    when "r" then self.turn("right")
     when "f" then self.forward
     else 
       raise StandardError, "The move needs to be of type l, r, or f."
