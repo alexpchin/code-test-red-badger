@@ -20,14 +20,14 @@ class Move < ActiveRecord::Base
   validate :correct_orientation?
   validate :does_it_land?
 
+  after_save :is_robot_lost?
+
   # Validates whether the initial move misses the world
   def does_it_land?
     if self.robot.moves.count < 1 
       errors.add(:base, :landing_error) if !self.is_move_available?
     end
   end
-
-  after_save :is_robot_lost?
 
   # Check if robot is lost after move
   def is_robot_lost?
@@ -44,7 +44,7 @@ class Move < ActiveRecord::Base
 
   # Validation for whether there already has been a robot lost with this move
   def already_smells?
-    if self.class.where(x: self.x, y: self.y, status: 0).present?
+    if self.robot.world.robots(&:moves).any? { |m| m.x == x && m.y == y && m.status == 0 }
       errors.add(:base, :already_smells)
     end
   end
