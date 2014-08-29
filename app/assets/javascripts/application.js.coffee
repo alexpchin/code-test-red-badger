@@ -35,4 +35,7 @@ $ ->
     $(document).on "click",'a', (e) ->
       e.preventDefault()
       url = $(@).attr('href')
-      ajaxLoad(url)
+      if (@.host == location.host)
+        ajaxLoad(url)
+      else
+        window.open(url)
