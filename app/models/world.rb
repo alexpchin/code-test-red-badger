@@ -37,7 +37,7 @@ class World < ActiveRecord::Base
   # That represents all of the moves in the world area
   # The lower-left coords are assumed to be 0, 0.
   def available_moves
-    row, col = [*World::MINSIZE..x], [*World::MINSIZE..y]       
+    row, col = [*World::MINSIZE..x], [*World::MINSIZE..y]   
     row.map { |r| ([r]*(y+1)).zip(col) }
   end
 

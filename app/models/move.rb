@@ -18,6 +18,14 @@ class Move < ActiveRecord::Base
   validates :orientation, presence: true
   validates :status, numericality: {less_than_or_equal_to: 1, greater_than_or_equal_to: 0}, presence: true
   validate :correct_orientation?
+  validate :does_it_land?
+
+  # Validates whether the initial move misses the world
+  def does_it_land?
+    if self.robot.moves.count < 1 
+      errors.add(:base, :landing_error) if !self.is_move_available?
+    end
+  end
 
   after_save :is_robot_lost?
 

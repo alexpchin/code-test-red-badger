@@ -10,6 +10,8 @@ en:
                 orientation_error: "Please choose N, S, E or W."
               base:
                 already_smells: "There is already a smell here..."
+                landing_error: "You missed the world completely!"
+
           robot:
             attributes:
               base:
