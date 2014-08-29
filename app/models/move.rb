@@ -66,15 +66,6 @@ class Move < ActiveRecord::Base
     Move::INSTRUCTIONS
   end
 
-  # Method to clean up my controller
-  def return_move(params)
-    if params.has_key?(:robot_instruction) 
-      self.select_move(params[:robot_instruction])
-    else 
-      params.require(:move).permit(:orientation, :x, :y)
-    end
-  end
-
   private
   # Status will always be 1 before validation
   # Status may change after before_save is_move_available? check

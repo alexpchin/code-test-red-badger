@@ -1,13 +1,13 @@
-require "spec_helper"
-require "shoulda/matchers"
+require File.dirname(__FILE__) + '/../spec_helper'
+require 'shoulda/matchers'
 
 describe World do
 
-  describe "relations" do
+  describe 'relations' do
     it { should have_many (:robots) }
   end
 
-  describe "validations" do
+  describe 'validations' do
     it { should validate_presence_of(:name) }
     it { should validate_uniqueness_of(:name) }
     it { should ensure_length_of(:name).is_at_least(1).is_at_most(30) } 

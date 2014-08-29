@@ -6,6 +6,7 @@ class Robot < ActiveRecord::Base
   validates :world_id, presence: true
   validate :prevent_multirobotics?, on: :create
 
+  # Metaprogramming method to access last coordinates
   # Retrieve the robot's last co-ordinates
   [:x, :y].each do |indice|
     define_method indice do 
@@ -15,6 +16,7 @@ class Robot < ActiveRecord::Base
 
   # Validates creating only one deployed robot at a time on a world
   def prevent_multirobotics?
+    return false if !self.world
     if self.world.robots.any? { |r| r.status == 1 && r.id }
       errors.add(:base, :deployed_robot)
     end
@@ -38,6 +40,15 @@ class Robot < ActiveRecord::Base
     moves.last.orientation if moves.present?
   end
 
+  # Moved method from move_controller to clean up my code
+  def return_move(params)
+    if params.has_key?(:robot_instruction) 
+      self.select_move(params[:robot_instruction])
+    else 
+      params.require(:move).permit(:orientation, :x, :y)
+    end
+  end
+
   # Combined left and right method to dry up code.
   # As orientations is an array, must cater for last/first in the array.
   def turn(direction)
@@ -53,9 +64,7 @@ class Robot < ActiveRecord::Base
   # As orientations is an array, must cater for last in the array.
   def make_turn(move1, move2)
     new_orientation = Move.orientations[Move.orientations.index(current_orientation) + move1]
-    if new_orientation.nil?
-      new_orientation = Move.orientations[move2]
-    end
+    new_orientation = Move.orientations[move2] if new_orientation.nil?
     { orientation: new_orientation, x: x, y: y }
   end
 

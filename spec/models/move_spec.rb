@@ -1,12 +1,12 @@
-require "spec_helper"
+require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Move do
 
-  describe "relations" do
+  describe 'relations' do
     it { should belong_to (:robot) }
   end
 
-  describe "validations" do
+  describe 'validations' do
     it { should validate_presence_of(:orientation) }
   end
 
