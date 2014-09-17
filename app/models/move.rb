@@ -43,6 +43,7 @@ class Move < ActiveRecord::Base
   end
 
   # Validation for whether there already has been a robot lost with this move
+  # On this world
   def already_smells?
     if self.robot.world.robots(&:moves).any? { |m| m.x == x && m.y == y && m.status == 0 }
       errors.add(:base, :already_smells)

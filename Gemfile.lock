@@ -288,6 +288,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   shoulda
   shoulda-matchers (~> 2.5.0)
+  simplecov
   spring
   sprockets_better_errors
   uglifier (>= 1.3.0)

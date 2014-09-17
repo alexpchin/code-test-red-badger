@@ -28,7 +28,8 @@ group :test, :development do
   gem 'pry-rails'
   gem 'rspec-rails', '~> 2.14.2'
   gem 'rubocop'
-  gem "codeclimate-test-reporter"
+  gem 'codeclimate-test-reporter'
+  gem 'simplecov', :require => false
 end
 
 group :test do
