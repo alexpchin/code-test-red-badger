@@ -27,6 +27,9 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    airbrake (4.1.0)
+      builder
+      multi_json
     arel (5.0.1.20140414130214)
     ast (2.0.0)
     brakeman (2.6.1)
@@ -41,6 +44,9 @@ GEM
       slim (>= 1.3.6, < 3.0)
       terminal-table (~> 1.4)
     builder (3.2.2)
+    bullet (4.13.2)
+      activesupport (>= 3.0.0)
+      uniform_notifier (>= 1.6.0)
     byebug (2.7.0)
       columnize (~> 0.3)
       debugger-linecache (~> 1.2)
@@ -255,6 +261,7 @@ GEM
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    uniform_notifier (1.6.2)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -262,7 +269,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  airbrake
   brakeman
+  bullet
   capybara
   codeclimate-test-reporter
   coffee-rails (~> 4.0.0)

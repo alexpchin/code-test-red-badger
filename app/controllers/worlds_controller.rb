@@ -7,7 +7,7 @@ class WorldsController < ApplicationController
   end
 
   def show
-    @robot  = @world.robots.where(status: 1).first
+    @robot  = @world.robots.includes(:moves).where(status: 1).first
     @robots = @world.robots.reverse if @world.robots.present?
     @moves  = @world.moves_on_world
   end

@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
-ruby '2.1.1'
+ruby '2.1.2'
 
+gem 'airbrake'
 gem 'haml-rails'
 gem 'rails', '4.1.4'
 gem 'pg'
@@ -30,6 +31,7 @@ group :test, :development do
   gem 'rubocop'
   gem 'codeclimate-test-reporter'
   gem 'simplecov', :require => false
+  gem 'bullet'
 end
 
 group :test do
